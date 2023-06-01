@@ -11,19 +11,18 @@ from NoiseAndTween import NoiseAndTween
 
 
 class MacroPlayer:
-    def __init__(self, save_path, save_file, number_of_plays=1, movement_type="human", max_random_px=10,
+    def __init__(self, save_path, save_file, movement_type="human", number_of_plays=1, max_random_px=10,
                  fail_safe=True):
         """
         Class plays back keyboard and mouse macros recorded using accompanying recorder
         Args:
         --save_path: String, path to directory where input macro is saved
         --save_file: String, file name of macro save file
-        --number_of_plays: Int, the macro will be repeated this many times
         --movement_type: String, will determine how mouse is moved. Values are, "instant", "simple", "human"
             --Instant movement there is no travel time.
             --Simple movement there is a straight line movement between current location and destination of cursor
             --Human movement there is a curved movement with some randomness using bezier curve to mimic human-like mouse movements
-
+        --number_of_plays: Int, the macro will be repeated this many times
         --max_random_px: Int, Used when doing human movement type to determine the max distance from actual x and y coords a press can be.
         --fail_safe: Boolean, Will keep standard fail safes for pyautogui, this includes moving mouse to corner of screen and ctrl alt delete to stop running
         """
@@ -157,8 +156,8 @@ class MacroPlayer:
             pg.moveTo(x, y, timer, pg.easeOutQuad)
 
 
-def main(file_path, file_name, number_of_plays, max_random_px, fail_safe):
-    r = MacroPlayer(file_path, file_name, number_of_plays, max_random_px, fail_safe)
+def main(file_path, file_name, movement_type, number_of_plays, max_random_px, fail_safe):
+    r = MacroPlayer(file_path, file_name, movement_type, number_of_plays, max_random_px, fail_safe)
     r.run()
 
 
@@ -166,13 +165,13 @@ if __name__ == "__main__":
     argParser = argparse.ArgumentParser()
     argParser.add_argument("--save_path", type=str, required=True, help="String - File path to save directory")
     argParser.add_argument("--save_file", type=str, required=True, help="String - File name for saved macro input")
-    argParser.add_argument("--number_of_plays", type=int, required=False,
-                           help="Integer - Number of times to play macro")
+    argParser.add_argument("--movement_type", type=str, required=True, help="String - Determine mouse movement type must be 'instant','simple' or 'human'")
+    argParser.add_argument("--number_of_plays", type=int, required=False, help="Integer - Number of times to play macro")
+    argParser.add_argument("--number_of_plays", type=int, required=False,help="Integer - Number of times to play macro")
     argParser.add_argument("--max_random_px", type=str, required=False, help="String - File name for saved macro input")
     argParser.add_argument('--fail_safe', action='store_true', help="Flag - Keeps pyautogui fail safes")
-    argParser.add_argument('--no_fail_safe', dest='fail_safe', action='store_false',
-                           help="Flag - Turns off pyautogui fail safes (NOT RECOMMENDED)")
+    argParser.add_argument('--no_fail_safe', dest='fail_safe', action='store_false', help="Flag - Turns off pyautogui fail safes (NOT RECOMMENDED)")
     argParser.set_defaults(number_of_plays=1, max_random_px=10, fail_safe=True)
     args = argParser.parse_args()
 
-    main(args.save_path, args.save_file, args.number_of_plays, args.max_random_px, args.fail_safe)
+    main(args.save_path, args.save_file, args.movement_type,args.number_of_plays, args.max_random_px, args.fail_safe)

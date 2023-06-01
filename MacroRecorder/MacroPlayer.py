@@ -167,7 +167,6 @@ if __name__ == "__main__":
     argParser.add_argument("--save_file", type=str, required=True, help="String - File name for saved macro input")
     argParser.add_argument("--movement_type", type=str, required=True, help="String - Determine mouse movement type must be 'instant','simple' or 'human'")
     argParser.add_argument("--number_of_plays", type=int, required=False, help="Integer - Number of times to play macro")
-    argParser.add_argument("--number_of_plays", type=int, required=False,help="Integer - Number of times to play macro")
     argParser.add_argument("--max_random_px", type=str, required=False, help="String - File name for saved macro input")
     argParser.add_argument('--fail_safe', action='store_true', help="Flag - Keeps pyautogui fail safes")
     argParser.add_argument('--no_fail_safe', dest='fail_safe', action='store_false', help="Flag - Turns off pyautogui fail safes (NOT RECOMMENDED)")

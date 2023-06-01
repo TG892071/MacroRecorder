@@ -1,0 +1,2 @@
+# MacroRecorder
+Python Macro Recorder

@@ -11,8 +11,7 @@ from NoiseAndTween import NoiseAndTween
 
 
 class MacroPlayer:
-    def __init__(self, save_path, save_file, movement_type="human", number_of_plays=1, max_random_px=10,
-                 fail_safe=True):
+    def __init__(self, save_path, save_file, movement_type="human", number_of_plays=1, max_random_px=10, fail_safe=True):
         """
         Class plays back keyboard and mouse macros recorded using accompanying recorder
         Args:
@@ -54,7 +53,7 @@ class MacroPlayer:
                              "Key.end": Key.end, "Key.delete": Key.delete, "Key.space": Key.space}
         self.number_of_plays = number_of_plays
         self.movement_type = movement_type
-        self.max_random_px = max_random_px
+        self.max_random_px = int(max_random_px)
 
     def run(self):
         """
@@ -170,7 +169,7 @@ if __name__ == "__main__":
     argParser.add_argument("--max_random_px", type=str, required=False, help="String - File name for saved macro input")
     argParser.add_argument('--fail_safe', action='store_true', help="Flag - Keeps pyautogui fail safes")
     argParser.add_argument('--no_fail_safe', dest='fail_safe', action='store_false', help="Flag - Turns off pyautogui fail safes (NOT RECOMMENDED)")
-    argParser.set_defaults(number_of_plays=1, max_random_px=10, fail_safe=True)
+    argParser.set_defaults(movement_type='human',number_of_plays=1, max_random_px=10, fail_safe=True)
     args = argParser.parse_args()
 
     main(args.save_path, args.save_file, args.movement_type,args.number_of_plays, args.max_random_px, args.fail_safe)

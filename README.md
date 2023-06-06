@@ -1,9 +1,9 @@
-## MacroRecorder
+# MacroRecorder
 Simple Python macro recorder using pynput and pyautogui. Macros are stored as JSON text files in a chosen directory. All keystokes and mouse button pressed are recorded along with current mouse position. The fail safes whilst playing a macro are the pyautogui defaults. Only tested on my local machine running windows 10.
 
-## Usage
+# Usage
 
-###Recording
+## Recording
 Run macro recorder from cmd using "python MacroRecorder.py --save_path [PATH] --save_file [FILE_NAME]"
 Optional arguments:
 * --mouse_movement/--no_mouse_movement, determines if you want mouse movements to be recorded, Default is --no_mouse_movement.
@@ -13,7 +13,7 @@ Example:
 python MacroRecorder.py --save_path C:\ExampleFolder  --save_file ExampleFile --mouse_movement
 ```
 
-###Playback
+## Playback
 Playback a macro recording from cmd using "python MacroPlayer.py --save_path [PATH]  --save_file [FILE_NAME]"
 Example: python MacroPlayer.py --save_path C:\ExampleFolder  --save_file ExampleFile.txt --movement_type human
 Optional arguments:
